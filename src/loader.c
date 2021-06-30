@@ -132,7 +132,7 @@ void write_protections(char *ImageBase, PIMAGE_SECTION_HEADER sections, WORD nse
     }
 }
 
-void *LoadPE(char *ptr_data, BOOL debug_mode)
+void *LoadPE(char *ptr_data, BOOL debug_mode, file_free_t *f)
 {
     // We can see README.md to understand it
     PIMAGE_DOS_HEADER dos_hdr = (PIMAGE_DOS_HEADER) ptr_data;
@@ -183,6 +183,9 @@ void *LoadPE(char *ptr_data, BOOL debug_mode)
     // Set sections permissions
 
     write_protections(ImageBase, sections, nt_hdr->FileHeader.NumberOfSections, nt_hdr->OptionalHeader.SizeOfHeaders);
+
+    f->ImageBase = ImageBase;
+    f->ptr_data = ptr_data;
     
     // return EntryPoint of PE loaded in to the memory
     return ((void *) (ImageBase + nt_hdr->OptionalHeader.AddressOfEntryPoint));

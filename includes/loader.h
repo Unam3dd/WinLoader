@@ -4,6 +4,7 @@
 #include <windows.h>
 
 typedef struct file_info_t file_info_t;
+typedef struct file_free_t file_free_t;
 
 struct file_info_t
 {
@@ -12,8 +13,15 @@ struct file_info_t
     size_t size_file;
 };
 
+struct file_free_t
+{
+    char *ptr_data;
+    char *ImageBase;
+};
+
 // reader.c
 uint8_t read_file(file_info_t *f);
+void free_memory(file_free_t *f);
 
 
 // debug.c
@@ -29,4 +37,4 @@ void write_sections(char *ImageBase, char *ptr_data, PIMAGE_SECTION_HEADER secti
 void write_imports(char *ImageBase, PIMAGE_IMPORT_DESCRIPTOR import_descriptor);
 void write_relocations(char *ImageBase, PIMAGE_BASE_RELOCATION base_reloc, DWORD delta);
 void write_protections(char *ImageBase, PIMAGE_SECTION_HEADER sections, WORD nsections, DWORD size_of_headers);
-void *LoadPE(char *ptr_data, BOOL debug_mode);
+void *LoadPE(char *ptr_data, BOOL debug_mode, file_free_t *f);

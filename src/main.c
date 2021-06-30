@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 
     // Initialize file_info_t struct for read file
     file_info_t f;
+    file_free_t free;
 
     f.filename = argv[1];
 
@@ -20,11 +21,14 @@ int main(int argc, char **argv)
         fprintf(stderr, "[-] Error read file !\n");
     
     // get New Entry point of PE Loaded in memory (ImageBase + AOP)
-    void *entry_point = LoadPE(f.ptr_data, 1);
+    void *entry_point = LoadPE(f.ptr_data, 1, &free);
 
     // If exist, we call it by our function pointer, which pointed to the entry_point of PE
     if (entry_point)
         ((void (*)(void)) entry_point)();
+    
+    // Memory leaks 
+    free_memory(&free);
      
     return (0);
 }
