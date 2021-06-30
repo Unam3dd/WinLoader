@@ -1,0 +1,4 @@
+{
+    "masmtasm.ASM.emulator": "dosbox",
+    "masmtasm.ASM.MASMorTASM": "MASM"
+}
