@@ -22,3 +22,5 @@ Dans l'en-tête et le corps d'un fichier PE, on trouve trois adressages différe
 Les adresses physiques représentent une position dans le fichier. Dans l'en-tête, leur nom commence par PointerTo
 Les adresses virtuelles indiquent une position en mémoire relative à ImageBase. Dans l'en-tête, leur nom commence par Virtual
 Les adresses mémoire sont aussi une position en mémoire mais cette fois absolue, ces adresses sont le plus souvent présentes dans le code de l'application et les données mais pas dans les en-têtes. Dans le cas où ImageBase a été modifié, la table des relocalisations indique la position des adresses mémoire à rectifier.
+
+![Image2](screen.PNG)
