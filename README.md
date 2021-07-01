@@ -10,7 +10,8 @@ https://docs.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-image_file_hea
 https://docs.microsoft.com/en-us/windows/win32/debug/image-access-functions (without Read file in memory)
 http://www.asmcommunity.net/forums/topic/?id=28027
 https://stackoverflow.com/questions/31981929/what-is-the-base-relocation-table-in-the-pe-file-format
-
+https://stackoverflow.com/questions/2170843/va-virtual-address-rva-relative-virtual-address
+https://lief.quarkslab.com/
 
 ![Image1](pe101fr.png)
 
