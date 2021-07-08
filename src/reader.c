@@ -31,12 +31,3 @@ uint8_t read_file(file_info_t *f)
 
     return (0);
 }
-
-void free_memory(file_free_t *f)
-{
-    if (f->ImageBase)
-        VirtualFree(f->ImageBase, 0, MEM_RELEASE);
-    
-    if (f->ptr_data)
-        free(f->ptr_data);
-}

@@ -7,16 +7,16 @@ LFLAGS = /MACHINE:x86 /OUT:$(NAME)
 SRCS = src/main.c \
 	   src/reader.c \
 	   src/loader.c \
-	   src/debug.c
+	   src/utils.c
 
-OBJS = main.obj reader.obj loader.obj debug.obj
+OBJS = main.obj reader.obj loader.obj utils.obj
 
 all:
 	$(CC) $(CFLAGS) $(SRCS)
 	$(LINK) $(OBJS) $(LFLAGS).exe
 
 build_lib:
-	lib.exe $(LFLAGS).lib $(OBJS)
+	lib.exe $(LFLAGS).lib $(OBJS) kernel32.lib msvcrt.lib
 
 clean:
 	del $(OBJS) /S /Q
