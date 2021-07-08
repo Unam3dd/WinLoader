@@ -1,7 +1,7 @@
 CC = cl.exe
 CFLAGS = /c /TC /I includes
 LINK = link.exe
-NAME = loader
+NAME = winloader
 LFLAGS = /MACHINE:x86 /OUT:$(NAME)
 
 SRCS = src/main.c \

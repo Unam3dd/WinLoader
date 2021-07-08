@@ -96,11 +96,13 @@ void write_protections(char *ImageBase, PIMAGE_SECTION_HEADER sections, WORD nse
 
         addr = (ImageBase + sections[i].VirtualAddress);
 
+        // Check if section has execute permission
         if (sections[i].Characteristics & IMAGE_SCN_MEM_EXECUTE)
             new_prot = ((sections[i].Characteristics & IMAGE_SCN_MEM_WRITE) ? PAGE_EXECUTE_READWRITE : PAGE_EXECUTE_READ);
         else
             new_prot = ((sections[i].Characteristics & IMAGE_SCN_MEM_WRITE) ? PAGE_READWRITE : PAGE_READONLY);
         
+        // Set permission of each section
         VirtualProtect(addr, sections[i].Misc.VirtualSize, new_prot, &old_prot);
     }
 }
@@ -130,11 +132,11 @@ void *LoadPE(char *ptr_data)
     delta = ((DWORD) ImageBase) - nt_hdr->OptionalHeader.ImageBase;
 
     if (data_dir[IMAGE_DIRECTORY_ENTRY_BASERELOC].VirtualAddress && delta) {
+        
         PIMAGE_BASE_RELOCATION base_reloc = (PIMAGE_BASE_RELOCATION) (ImageBase + data_dir[IMAGE_DIRECTORY_ENTRY_BASERELOC].VirtualAddress);
 
         write_relocations(ImageBase, base_reloc, delta);
     }
-
 
     write_protections(ImageBase, sections, nt_hdr->FileHeader.NumberOfSections, nt_hdr->OptionalHeader.SizeOfHeaders);
     
